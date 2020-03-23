@@ -1,0 +1,24 @@
+<config xmlns="urn:org:jgroups"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:org:jgroups http://www.jgroups.org/schema/jgroups.xsd">
+    <TCP
+            external_addr="${JGROUPS_EXTERNAL_ADDR:match-interface:eth0}"
+            bind_addr="site_local,match-interface:eth0"
+            bind_port="${TCP_PORT:7800}"/>
+    <org.jgroups.protocols.kubernetes.KUBE_PING
+            port_range="1"
+            namespace="${KUBERNETES_NAMESPACE:default}"
+            dump_requests="true"
+            port_range="0"/>
+    <CENTRAL_LOCK/>
+    <MERGE3/>
+    <FD_SOCK/>
+    <FD_ALL/>
+    <VERIFY_SUSPECT/>
+    <pbcast.NAKACK2 use_mcast_xmit="false"/>
+    <UNICAST3/>
+    <pbcast.STABLE/>
+    <pbcast.GMS/>
+    <MFC/>
+    <FRAG3/>
+</config>
